@@ -10,3 +10,4 @@
 * es 特性浏览器支持 https://kangax.github.io/compat-table/es6/
 * 数据库性能 https://db-engines.com/en/
 * 网站框架 https://www.techempower.com/benchmarks/#section=previous-rounds&hw=ph&test=fortune
+* 安全漏洞 https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project
