@@ -12,3 +12,13 @@
 * 网站框架 https://www.techempower.com/benchmarks/#section=previous-rounds&hw=ph&test=fortune
 * 安全漏洞 https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project
 * CVSS（通用漏洞评分系统）  https://www.first.org/cvss/scores
+
+## 值得阅读的
+* 对于 HTTP/S 有很不错解读的https://imququ.com/
+* https://martinfowler.com/
+* https://microservices.io/
+* https://www.jdon.com/
+* https://docs.microsoft.com/en-us/azure/architecture
+* https://freeCodeCamp.org
+* https://twitter.com/ericevans0?lang=en
+* 咨询行业 https://www.consultantsmind.com/what-do-consultants-do/
