@@ -24,3 +24,4 @@
 * https://twitter.com/ericevans0?lang=en
 * 咨询行业 https://www.consultantsmind.com/what-do-consultants-do/
 * https://www.weave.works/blog/category/docker/ 集群监控
+* https://thesystemsthinker.com 系统思考方法论和应用的
