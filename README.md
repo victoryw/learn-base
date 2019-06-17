@@ -26,3 +26,4 @@
 * https://www.weave.works/blog/category/docker/ 集群监控
 * https://thesystemsthinker.com 系统思考方法论和应用的
 * 一些批处理系统 https://www.bizety.com/2017/06/05/open-source-data-pipeline-luigi-vs-azkaban-vs-oozie-vs-airflow/
+* system-design-primer https://github.com/donnemartin/system-design-primer
