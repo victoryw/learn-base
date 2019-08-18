@@ -16,6 +16,7 @@
 
 ## 值得阅读的
 * [DDD 概念解释的网站](https://thedomaindrivendesign.io)
+* [DDD 落地的各个要素](https://www.infoq.com/articles/ddd-in-practice/)
 * 对于 HTTP/S 有很不错解读的https://imququ.com/
 * https://martinfowler.com/
 * https://microservices.io/
