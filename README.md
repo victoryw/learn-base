@@ -15,6 +15,7 @@
 * CVSS（通用漏洞评分系统）  https://www.first.org/cvss/scores
 
 ## 值得阅读的
+* [DDD 概念解释的网站](https://thedomaindrivendesign.io)
 * 对于 HTTP/S 有很不错解读的https://imququ.com/
 * https://martinfowler.com/
 * https://microservices.io/
