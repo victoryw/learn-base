@@ -77,18 +77,15 @@ reqparam       = "req-" qchar *qchar [ "=" *qchar ]
 ---
 
 ### 交易
-* 交易的概念
-* 交易的组成元素，元素间的关系(交易的形式和交易链条)
+* 交易的定义、交易的组成元素和关系
 * 在用户、钱包软件和比特币网络下，完成一笔交易
----
 
-**交易是所有权转让，将价值从交易输入授权转移到交易输出**
+**交易是所有权转让，将价值从交易输入转移到交易输出**
 A transaction tells the network that **the owner** of some bitcoin **value** has **authorized** the **transfer** of that **value** to **another owner**. 
-The new owner can now spend the bitcoin by creating another transaction that authorizes the transfer to another owner, and so on, in **a chain of ownership**.
 
 ---
 
-#### 交易由输入和输出组成
+#### 一次价值的转移
 ![width:200px](https://raw.githubusercontent.com/bitcoinbook/bitcoinbook/develop/images/mbc2_0203.png)
 * 一次交易会有多笔输入和输出
 * 交易的费用 = 总输入值 - 总输出值
@@ -96,12 +93,13 @@ The new owner can now spend the bitcoin by creating another transaction that aut
 
 ---
 
-#### 交易输入、输出的构成和交易链条
+#### 所有权、授权，价值 (交易输入、输出的构造，关联)
 ![width:1000px](https://raw.githubusercontent.com/bitcoinbook/bitcoinbook/develop/images/mbc2_0204.png)
-* 输入（上一笔输出的引用：交易、签名/地址？ 和 值） 和 输出 （地址、值、类型）的组成结构
-* 找零输出 和 费用
-* 交易间的输入和输出的关系构成交易链条
-* ~~交易的安全性（所有权证明，防篡改-输出的地址、用户的私钥、输入签名解锁）~~
+* 输出 （地址、值、类型）
+* 输入（上一笔输出的引用：交易、地址 和 值） 
+* 交易间的输入和输出的关系构成交易链条, 所有权的转移链条
+* 授权：私钥、地址、签名；锁定脚本
+* 找零输出 和 费用；找零的价值——而不是一笔输入出现在多笔交易中, UTXO不可变
 
 ---
 
@@ -131,9 +129,16 @@ The new owner can now spend the bitcoin by creating another transaction that aut
 创建输出
 * 交易输出脚本 creates an encumbrance(留置权) on the value and can only be redeemed(赎回) by the introduction of a solution to the script
   脚本大意是这样的：“这个输出将支付给那个能提供与鲍勃的公开地址相匹配的签名的人。
-  提供这样一个签名来兑现这笔输出
+  由于只有鲍勃拥有与其地址匹配的密钥，所以只有鲍勃的钱包软件可以提供这样一个签名来兑现这笔输出
 * 找零输出 和 交易费用
 [示例](https://www.blockchain.com/btc/tx/0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2)
+
+<!--
+  留置权——输出锁定，给谁、多少 和 解锁条件（提一个问题，和验证答案的方式）
+-->
+<!--
+  赎回——输入，满足解锁条件 （提供自己的答案）
+-->
 
 ---
 
