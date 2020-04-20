@@ -14,12 +14,13 @@ marp: true
 ---
 
 ## 概述
-概览比特币的工作模式。
-通过模拟资金在用户间的转移这样的案例，来追踪 *比特币的交易* ，
-* *用户*间的交易如何被*钱包软件* 完成；
+***概览***比特币的工作模式，了解用户、钱包软件、网络、矿工、账本的协作关系来完成一笔交易。
+
+通过模拟资金在用户间的转移这样的案例，来追踪 一笔*比特币的交易* ，
+* *用户*间的交易如何被*钱包软件* 建立；
 * 交易如何通过*比特币网络* 传播
 * 交易是如何通过矿工依据*分布式共识机制* 达成共识，最终被记录（上帐）到*区块链*上
-* *钱包软件* 是如何确认以花费交易的
+* *钱包软件* 是如何确认交易生效以花费交易的
 
 ---
 
@@ -34,7 +35,7 @@ marp: true
 * 组成：
   * 支付码
   * 交易
-  * 共识
+  * 传播和共识
   * 花费
 ---
 ### 支付码
@@ -56,9 +57,11 @@ The payment amount: "0.015 BTC"
 A label for the recipient address: "Bob's Cafe"
 A description for the payment: "Purchase at Bob's Cafe"
 ```
-* 数量单位：**BTC**
-* 数量格式：Decimal
+* 地址：接收方的比特币地址
+* 数量：**BTC** 和 Decimal
+  
 ---
+
 [BIP0021](https://en.bitcoin.it/wiki/BIP_0021)
 ```
 bitcoinurn     = "bitcoin:" bitcoinaddress [ "?" bitcoinparams ]
@@ -127,6 +130,8 @@ The new owner can now spend the bitcoin by creating another transaction that aut
 
 创建输出
 * 交易输出脚本 creates an encumbrance(留置权) on the value and can only be redeemed(赎回) by the introduction of a solution to the script
+  脚本大意是这样的：“这个输出将支付给那个能提供与鲍勃的公开地址相匹配的签名的人。
+  提供这样一个签名来兑现这笔输出
 * 找零输出 和 交易费用
 [示例](https://www.blockchain.com/btc/tx/0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2)
 
@@ -134,16 +139,15 @@ The new owner can now spend the bitcoin by creating another transaction that aut
 
 ###### 传播和接收
 * 传播给Bob的钱包软件和网络里的其他客户端
-* 传播通过p2p的比特币网络的转发完成的
+  * 传播通过p2p的比特币网络的转发完成的
 * Bob的钱包软件通过直接/间接收到交易，
-* Bob可以独立认可现实的交易（小额低风险）也可以等待共识后认可现实的交易完成。（这么简单么？）
+* Bob可以独立认可现实的交易（？怎么叫做收到）（小额低风险）也可以等待共识后认可现实的交易完成。（这么简单么？）
 
 
 ---
 
 ### 共识和花费
 一个在网络上传播的交易，直到成为全局分布式账本（区块链）的一部分才算真正得到确认。
-~~比特币挖矿具体过程~~
 1. Alice 的交易从网络流入 景 的临时交易池
 2. 景创建了一个新区块
 3. 景依据优先原则，从临时交易池提取未被纳入区块的交易
@@ -153,9 +157,9 @@ The new owner can now spend the bitcoin by creating another transaction that aut
 
 ---
 
-7. 其他矿工发布新区块基于277316区块或者基于包含277316的区块
-8. 6次确认（？怎么6次确认）后的区块被认为是不可撤销的
-9. 客户端通过确认交易所在的区块是不可撤销的验证交易
+7. 其他矿工发布新区块基于277316区块或者基于包含277316的区块 —— 区块高度、区块深度
+8. 6次确认（？怎么6次确认）后的区块被认为是不可撤销的（被分叉的可能性很小）
+9. 客户端通过确认交易所在的区块是不可撤销的验证交易（Full-Node 和 轻量级的节点都是这样么？）
 10. 交易有效且可花费的，Bob 可以继续消费
 
 ---
