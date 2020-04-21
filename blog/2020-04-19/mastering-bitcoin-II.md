@@ -39,6 +39,7 @@ marp: true
   * 花费
 ---
 ### 支付码
+用户通过钱包软件扫描支付码，来获得转账信息
 A URI scheme for making Bitcoin payments (BIP0021)
 ![](https://raw.githubusercontent.com/bitcoinbook/bitcoinbook/develop/images/mbc2_0202.png)
 
@@ -78,7 +79,7 @@ reqparam       = "req-" qchar *qchar [ "=" *qchar ]
 
 ### 交易
 * 交易的定义、交易的组成元素和关系
-* 在用户、钱包软件和比特币网络下，完成一笔交易
+* 在钱包软件帮助用户创建一笔交易并传播到比特币网络
 
 **交易是所有权转让，将价值从交易输入转移到交易输出**
 A transaction tells the network that **the owner** of some bitcoin **value** has **authorized** the **transfer** of that **value** to **another owner**. 
@@ -99,7 +100,7 @@ A transaction tells the network that **the owner** of some bitcoin **value** has
 * 输入（上一笔输出的引用：交易、地址 和 值） 
 * 交易间的输入和输出的关系构成交易链条, 所有权的转移链条
 * 授权：私钥、地址、签名；锁定脚本
-* 找零输出 和 费用；找零的价值——而不是一笔输入出现在多笔交易中, UTXO不可变
+* 找零输出 找零的价值——而不是一笔输入出现在多笔交易中, UTXO不可变（交易不可变，规则和分布式存储）
 
 ---
 
