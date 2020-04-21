@@ -21,7 +21,7 @@ marp: true
 * 以太币 以太坊的数字货币
 * 以太币的货币单位 ETH
 * 以太币的面额单位 wei等
-* 单位间的换算机制
+* 单位间的换算机制 1 ether = 10 ^ 18 wei
 
 ---
 
@@ -33,7 +33,7 @@ marp: true
 * 私钥和以太坊地址是1对1的关系
   
 钱包的可靠性  
-私钥的保存和防窃取、资产的安全转移
+私钥的保存和防窃取、资产的安全转移‘
   
 ---  
 ### MetaMask
@@ -67,6 +67,14 @@ marp: true
 ---
 
 ## 创建/使用合约
+## 外部账户与合约账户
+* 外部账户有钱包创建，拥有私钥
+* 合约账户具有智能合约代码，没有私钥（无法启动交易，但可以调用其他合约）
+
+* 合约也有地址，可以发送和接收以太币
+* **当交易目标是合约地址时，合约会在EVM中运行**
+---
+
 ### 创建合约
 合约地址
 合约的使用：通过交易的方式触发--创建到特定函数的内部交易 和 确认交易
@@ -75,8 +83,51 @@ marp: true
 * 合约编译为 EVM的二进制代码
 * 注册合约到区块链网络（选择网络，关联账户，GAS，提交交易来注册合约）
 * 合约账户的地址
+---
 
+#### 撰写合约：Faucet 
+```
+// Our first contract is a faucet
+contract Faucet {
+  // Give out ether to anyone who asks
+  function withdraw(uint withdraw_amount) public {
+    // Limit withdraw amount
+    require(withdraw_amount <= 1000000000000000000000);
+
+    // Send the amount to the address that requested it
+    msg.sender.transfer(withdraw_amount);
+  }
+
+  // Accept any incoming amount
+  function () public payable {}
+}
+```
+
+---
+#### 编译合约
+* 将 Solidity 代码转换为 EVM 字节码
+* 使用工具：Remix
+* 注意选择 Solidity 版本
+
+---
+#### 部署合约
+* 将编译好的字节码注册到以太坊区块链上
+* 合约注册通过一个特殊的**交易**，交易目标地址0x0
+* 通过 Remix IDE 和 MetaMask 完成部署，得到合约地址
+* 现在，我们编写的合约已经在**世界计算机**上运行
+
+--- 
 ### 使用合约
 工具：Remix
 * 合约地址
 * 合约通过交易的方式触发--创建到特定函数的内部交易 和 确认交易
+
+* 推荐教程：[CryptoZombies](https://cryptozombies.io/zh/course/)
+
+--- 
+## 比特币 vs 以太坊
+* 比特币没有账户的概念，基于UTXO，而以太坊中是具有账户概念
+* 比特币的交易和解锁脚本功能相对单一，以太坊合约则非常灵活
+* 比特币的交易输出可以被引用，树状关系，而以太坊的合约之间可以互相调用，网状关系
+* 以太坊的各个合约部署完毕之后，可以看做是世界计算机上的类库，只是这些类库调用很多是需要花钱（gas）的
+
