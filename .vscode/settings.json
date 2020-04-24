@@ -1,0 +1,5 @@
+{
+    "plantuml.render": "PlantUMLServer",
+    "plantuml.server": "http://www.plantuml.com/plantuml",
+    "markdown.marp.enableHtml": true
+}
