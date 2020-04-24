@@ -1,0 +1,74 @@
+@startuml "身份认证系统图"
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+' uncomment the following line and comment the first to use locally
+' !include C4_Container.puml
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 200
+
+LAYOUT_TOP_DOWN
+'LAYOUT_AS_SKETCH
+
+title 身份认证系统图
+
+Person(saler, "4s dealer employee", "Who is responsible for parts retail")
+System(GenuinePro, "Genuine Pro Dealer System", "The system to trade the parts")
+System_Ext(SSO, "sso system", "Open ID system")
+
+Rel(saler, GenuinePro, "Authorize", "HTTPS")
+Rel(saler, SSO, "Authenticate", "HTTPS")
+Rel(GenuinePro, SSO, "Query Person Info", "HTTPS")
+
+@enduml
+
+@startuml "身份认证系统容器图"
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+
+title 身份认证系统容器图
+
+Person(saler, "4s dealer employee", "Who is responsible for parts retail")
+
+System_Ext(SSO, "sso system", "Open ID system")
+System_Boundary(GenuinePro, "Genuine Pro Dealer System"){
+    Container(DealerSPA, "dealer web site", "React", "Dealer Website")
+    Container(ApiServer, "api server", "Java+Spring Boot")
+    ContainerDb(memoryDb, "api memeroy db", "redis")
+    ContainerDb(DataBase, "api database", "mysql")
+
+    Rel(DealerSPA, ApiServer, "Create Authorization", "HTTP")
+    Rel(ApiServer, SSO, "Query Personal Info", "HTTPS")
+    Rel(ApiServer, memoryDb, "Store token with time", "TCP")
+    Rel(ApiServer, DataBase, "Query User Info", "TCP")
+}
+
+Rel(saler, DealerSPA, "Authorize", "HTTPS")
+Rel(saler, SSO, "Authenticate", "HTTPS")
+
+@enduml
+
+@startuml "api server的组件图"
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+title api server的组件图
+
+Container(DealerSPA, "dealer web site", "React", "Dealer Website")
+ContainerDb(memoryDb, "api memeroy db", "redis")
+ContainerDb(DataBase, "api database", "mysql")
+System_Ext(SSO, "sso system", "Open ID system")
+
+Container_Boundary(ApiServer, "API Application") {
+    Component(authorizationFilter, "J2EE Filter", "Spring Filter", "Provides functionality related to validation authorization")
+    Component(authorizationRestInbound, "Authorization Controller", "MVC Rest Controlle", "Allows users to sign in to the internet banking system")
+    Component(accountsBoundContext, "Accounts Bound Context", "Java Package", "Provides Bound Context for user authorizate/identity/account")
+
+    Rel(authorizationFilter, accountsBoundContext, "verify")
+    Rel(authorizationRestInbound, accountsBoundContext, "create authorization")
+    Rel(accountsBoundContext, DataBase, "Read & write to", "JDBC")
+    Rel(accountsBoundContext, memoryDb, "Read & write to", "Jedis")
+    Rel(accountsBoundContext, SSO, "Query Personal Info", "HTTPS")
+}
+
+
+
+Rel(DealerSPA, ApiServer, "Create Authorization", "HTTP")
+@enduml
