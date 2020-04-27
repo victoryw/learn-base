@@ -22,6 +22,7 @@
 * [Code 展示](https://carbon.now.sh/)
 * [arch-as-code](https://structurizr.com/help/getting-started)
 * [arch-as-code-yaml](https://github.com/trilogy-group/arch-as-code)
+* [C4 on Draw.io](https://tobiashochguertel.github.io/c4-draw.io/)
 
 ## 值得阅读的
 * [DDD 概念解释的网站](https://thedomaindrivendesign.io)
@@ -40,3 +41,6 @@
 * system-design-primer https://github.com/donnemartin/system-design-primer
 * IT 概念 https://whatis.techtarget.com/
 
+## 笔记工具指南
+* [markdown to ppt](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)
+* [markdown to plantuml](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
